@@ -5,6 +5,7 @@
 		{
 
 			global $homeUrl;
+			session_unset();
 			session_destroy();
 			$this->view("logout/index", array());
 			exit();

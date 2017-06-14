@@ -53,10 +53,23 @@
 				    }
 				);
 			}
+			function load() {
+				setTimeout(function () { document.getElementById("message").style.visibility = "visible"; }, 500);
+				setTimeout(function () { document.getElementById("message").style.visibility = "hidden"; }, 3000);
+			}
+			window.onload = load;
 		</script>
 	</head>
 	<body>
-		<header id="Head"><a href="../homePage/home.html">Dilly</a></header>
+		<?php
+			if(array_key_exists("message",$data))
+			{
+				echo "<center id=\"message\" class=\"popup alert alert-danger\">\n";
+				echo $data["message"];
+				echo "</center>\n";
+			}
+		?>
+		<header id="Head"><a href=<?php global $root; echo "\"" . $root . "home/index\""; ?>>Dilly</a></header>
 		<div class="login-wrap">
 			<div class="login-html">
 				<input id="tab-1" type="radio" name="tab" class="sign-in" checked>
@@ -65,7 +78,7 @@
 				<label for="tab-2" class="tab">Sign Up</label>
 				<div class="login-form">
 					<div class="sign-in-htm">
-						<form action="userInput.php" method="post">
+						<form action=<?php echo "\"" . $data[0] . "/login/login_callback_classic\"";?> method="post">
 							<div class="group">
 								<label for="user" class="label" placeholder="Your e-mail/username..">E-mail/Username:</label>
 								<input id="user" name="loginuser" required="required" type="text" class="input">
@@ -77,10 +90,10 @@
 							<div class="group">
 								<input type="submit" class="button" value="Sign In" >
 							</div>
-							<div class="hr"></div>
 							<div class="foot-lnk">
 								<a href="forgotPassword.html">Forgot Password?</a>
 							</div>
+							<div class="hr"></div>
 						</form>
 						<center>
 							<button class="btn icon-btn btn-danger" id="customBtn">Connect With Google</button>
@@ -88,7 +101,7 @@
 					</div>
 				
 					<div class="sign-up-htm">
-						<form action="signupdata.php" method="post">
+						<form action=<?php echo "\"" . $data[0] . "/login/sign_up\"";?> method="post">
 							<div class="group">
 								<label for="fname" class="label">Firstname:</label>
 								<input id="fname" type="text" name="newfirstname" required="required" class="input">
@@ -118,16 +131,7 @@
 								<input id="birthdate" type="date" name="newbdate" required="required" class="input">
 							</div>
 							<div class="group">
-								<label for="gender" class="label">Genre:</label>
-								<input id="gender" type="radio" value="male" class="input" name="sex">Male
-								<input id="gender" type="radio" value="female" class="input" name="sex" checked>Female
-							</div>
-							<div class="group">
 								<input type="submit" class="button" value="Sign Up" action="#">
-							</div>
-							<div class="hr"></div>
-							<div class="foot-lnk">
-								<label for="tab-1">Already Member?</label>
 							</div>
 						</form>
 					</div>

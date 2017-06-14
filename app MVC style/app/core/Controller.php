@@ -3,14 +3,8 @@
     {
     	public function model($model)
     	{
-            try
-            {
-    		  require_once('../app/models/' . $model . '.php');
-    		  return new $model();
-            }catch(Exception $e)
-            {
-                throw $e;
-            }
+		  require_once('../app/models/' . $model . '.php');
+		  return new $model();
     	}
 
     	public function view($view, $data = array())
