@@ -1,9 +1,8 @@
 <?php
 	error_reporting(E_ALL);
 	ini_set('display_errors', 1);
-	require_once '../app/libraries/aws/aws-autoloader.php';
+	require '../app/vendor/autoload.php';
 	use Aws\S3\S3Client;
-	use Aws\S3\Exception\S3Exception;
 
 	class Services extends Controller
 	{
@@ -58,38 +57,30 @@
 				}
 
 				//fisierul incarcat cu succes
+				$s3Client = new S3Client([
+				    'version'     => 'latest',
+				    'region'      => 'eu-central-1',
+				    'credentials' => [
+				        'key'    => 'AKIAISJPPQWLFPKJBF4A',
+				        'secret' => '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',
+				    ],
+				    'http'    => [
+				        'verify' => false
+				    ]
+				]);
 
-
-
-
-$bucket = 'digital.legacy.box';
-$keyname = 'test';
-// $filepath should be absolute path to a file on disk                      
-$filepath = "upload/" . $nume . "." . $extension;
-
-// Instantiate the client.
-$s3 = S3Client::factory(array(
-    'version' => 'latest',
-    'region'  => 'us-east-1'
-));
-
-try {
-    // Upload data.
-    $result = $s3->putObject(array(
-        'Bucket' => $bucket,
-        'Key'    => $keyname,
-        'SourceFile'   => $filepath,
-        'ACL'    => 'public-read'
-    ));
-
-
-
-    // Print the URL to the object.
-    echo $result['ObjectURL'] . "\n";
-} catch (S3Exception $e) {
-    echo $e->getMessage() . "\n";
-}
-
+				try {
+				    $result = $s3Client->putObject([
+				        'Bucket' => 'digital.legacy.box',
+				        'Key'    => "upload/" . $nume . "." . $extension,
+				        'Body'   => fopen("upload/" . $nume . "." . $extension, 'r'),
+				        'ACL'    => 'public-read',
+				    ]);
+					
+					echo "<img src=\"" . $result["ObjectURL"] . "\">"; exit();
+				} catch (Aws\S3\Exception\S3ClientException $e) {
+				    echo "There was an error uploading the file.\n";
+				}
 
 			}else
 			{
