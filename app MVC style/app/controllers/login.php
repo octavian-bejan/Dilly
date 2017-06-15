@@ -7,11 +7,11 @@
 	{
 		public function index($data = "")
 		{
-			if(isset($_SESSION['id']) && $_SESSION['id']!='')
+			if(isset($_SESSION['user_id']) && $_SESSION['user_id']!='')
             {
-            	global $homeUrl;
-                $url = $homeUrl;
-
+            	$user_id = $_SESSION['user_id'];
+				global $homeUrl;
+				$url = $homeUrl . "/profile/" . $user_id;
 				header('Location: ' . $url, true, 303);
 				exit();
             }else
@@ -19,6 +19,7 @@
             	global $homeUrl;
                 $url = $homeUrl;
 				$this->view("login/index", array($url));
+				exit();
             }
 		}
 
@@ -88,12 +89,14 @@
 					global $homeUrl;
                 	$url = $homeUrl;
 					$this->view("login/index", array($url));
+					exit();
 				}
 			}else
 			{
 				global $homeUrl;
                 $url = $homeUrl;
 				$$this->view("login/index", array($url));
+				exit();
 			}
 		}
 
@@ -131,12 +134,14 @@
 					global $homeUrl;
 	                $url = $homeUrl;
 					$this->view("login/index", array($url, "message" => "Wrong USERNAME or PASSWORD!"));
+					exit();
 				}
 			}else
 			{
 				global $homeUrl;
                 $url = $homeUrl;
-				$this->view("login/index", array($url));
+				$this->view("login/index", array($url, "message" => "Wrong USERNAME or PASSWORD!"));
+				exit();
 			}
 		}
 
@@ -218,7 +223,8 @@
 			{
 				global $homeUrl;
                 $url = $homeUrl;
-				$this->view("login/index", array($url));
+				$this->view("login/index", array($url, "message" => "Complete all the fields"));
+				exit();
 			}
 		}
 	}

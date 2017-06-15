@@ -17,7 +17,7 @@
 
 				var form = document.createElement("form");
 				form.method = "POST";
-				form.action = <?php echo "\"" . $data[0] . "/login/login_callback_google\""; ?>;
+				form.action = <?php global $root; echo "\"" . $root . "/login/login_callback_google\""; ?>;
 
 				var element = document.createElement("input");
 				element.type = "hidden";
@@ -78,7 +78,7 @@
 				<label for="tab-2" class="tab">Sign Up</label>
 				<div class="login-form">
 					<div class="sign-in-htm">
-						<form action=<?php echo "\"" . $data[0] . "/login/login_callback_classic\"";?> method="post">
+						<form action=<?php global $root; echo "\"" . $root . "/login/login_callback_classic\"";?> method="post">
 							<div class="group">
 								<label for="user" class="label" placeholder="Your e-mail/username..">E-mail/Username:</label>
 								<input id="user" name="loginuser" required="required" type="text" class="input">
@@ -101,7 +101,7 @@
 					</div>
 				
 					<div class="sign-up-htm">
-						<form action=<?php echo "\"" . $data[0] . "/login/sign_up\"";?> method="post">
+						<form action=<?php global $root; echo "\"" . $root . "/login/sign_up\"";?> method="post">
 							<div class="group">
 								<label for="fname" class="label">Firstname:</label>
 								<input id="fname" type="text" name="newfirstname" required="required" class="input">

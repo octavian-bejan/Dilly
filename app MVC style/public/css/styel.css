@@ -57,3 +57,12 @@ h2 span {
 footer.copyright{
 	text-align:center;
 }
+.bootstrap-tagsinput {
+  width: 100% !important;
+}
+.continut{
+  margin-top: 10px;
+}
+.buton_submit{
+  width: auto;
+}
