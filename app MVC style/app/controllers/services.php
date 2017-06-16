@@ -61,8 +61,8 @@
 				    'version'     => 'latest',
 				    'region'      => 'eu-central-1',
 				    'credentials' => [
-				        'key'    => 'AKIAISJPPQWLFPKJBF4A',
-				        'secret' => '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',
+				        'key'    => '--------------',
+				        'secret' => '--------------',
 				    ],
 				    'http'    => [
 				        'verify' => false
