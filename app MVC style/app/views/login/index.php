@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<script src="https://apis.google.com/js/api:client.js"></script>
-		<meta name="google-signin-client_id" content="831718862572-ll0p8s0t48v9akf2st86nmpa821m19sb.apps.googleusercontent.com">
+		<meta name="NAME" content="KEY">
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="<?php global $root; echo $root."css/loginSignupCss.css"; ?>">
 		<link rel="stylesheet" type="text/css" href=<?php global $root; echo "\"" . $root . "bootstrap-3.3.7-dist/css/bootstrap.min.css\"";?>>
@@ -34,7 +34,7 @@
 				gapi.load('auth2',
 					function()
 					{
-				  		auth2 = gapi.auth2.init({ client_id: '831718862572-ll0p8s0t48v9akf2st86nmpa821m19sb.apps.googleusercontent.com', cookiepolicy: 'single_host_origin'});
+				  		auth2 = gapi.auth2.init({ client_id: 'ID', cookiepolicy: 'single_host_origin'});
 				  		attachSignin(document.getElementById('customBtn'));
 					}
 				);

@@ -8,20 +8,37 @@
 		<link rel="stylesheet" type="text/css" href=<?php global $root; echo "\"" . $root . "bootstrap-3.3.7-dist/css/font-awesome.css\"";?>>
 		<link rel="stylesheet" type="text/css" href=<?php global $root; echo "\"" . $root . "css/styel.css\"";?>>
 		<link rel="stylesheet" type="text/css" href=<?php global $root; echo "\"" . $root . "bootstrap-3.3.7-dist/fonts/font-awesome-4.7.0/css/font-awesome.min.css\"";?>>
+		<link rel="stylesheet" type="text/css" href=<?php global $root; echo "\"" . $root . "bootstrap-3.3.7-dist/css/bootstrap-social.css\"";?>>
 		<script src=<?php global $root; echo "\"" . $root . "bootstrap-3.3.7-dist/js/jquery-3.2.1.min.js\"";?>></script>
 		<script src=<?php global $root; echo "\"" . $root . "bootstrap-3.3.7-dist/js/bootstrap.js\"";?>></script>
+		<script src=<?php global $root; echo "\"" . $root . "bootstrap-3.3.7-dist/js/bootstrap-filestyle.js\"";?>></script>
 		<script src=<?php global $root; echo "\"" . $root . "bootstrap-3.3.7-dist/js/bootstrap-tagsinput.js\"";?>></script>
 		<script src=<?php global $root; echo "\"" . $root . "js/profile.js\"";?>></script>
+		<script>
+			var url = <?php global $root; echo "\"" . $root . "services/getInstagramPosts\"" ?>;
+		</script>
 	</head>
 	<body>
-		<nav class="navbar navbar-custom navbar-fixed-top ">
+		<nav class="navbar navbar-inverse navbar-fixed-top ">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<!-- Sigla site-ului-->
-					<a href="#" class="navbar-brand" style="font-size:30px;font-family:Orange Juice;color:	#ee7777;top:0;">Dilly</a>
+					<a href=<?php global $root; echo "\"" . $root . "home/index\""; ?> class="navbar-brand" style="font-size:30px;font-family:Orange Juice;color:	#ee7777;top:0;">Dilly</a>
 				</div>
 				<!--Meniul din pagina homepage after login-->
+
 				<ul class="nav navbar-nav navbar-right">
+					<li>
+		                <div class="input-group stylish-input-group speciala2">
+		                	<form class="form-inline" method="POST" action=<?php global $root; echo "\"" . $root . "search/index\""; ?> enctype="multipart/form-data">
+		                		<div class="form-group">
+									<input type="text" class="form-control" id="search_bar" name="searched_tags">
+								</div>
+								<button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-search"></span></button>
+			                </form>
+		                </div>
+					</li>
+
 					<li><a  href="#" data-toggle="modal" data-target="#addMoment"><i class="fa fa-rocket" aria-hidden="true"></i>&nbsp;Add Moments</a></li>
 					<li><a  href="../Friends/pg.html"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Friends</a></li>
 					<!-- Notification bar-->
@@ -58,7 +75,37 @@
 		</header>
 
 		<div class="container-fluid acting">
-			
+			<?php
+				global $root;
+				$moments = $data["moments"];
+				if(isset($data["message"]))
+				{
+					echo "<h2 class=\"alert alert-info\" style=\"text-align:center\">";
+					echo $data["message"];
+					echo "</h2>";
+				}
+				foreach($moments as $moment)
+				{
+					echo "<div  class=\"col-md-16 block-a\">";
+					echo "<h2 style=\"text-align:center\"><span>";
+					echo $moment["DESCRIPTION"];
+					echo "</span></h2>";
+					if(isset($moment["URL"]))
+					{
+						echo "<div class=\"image\">";
+				        echo" <img src=\"" . $moment["URL"] . "\" class=\"img-responsive \" style=\"display: block;margin: auto;width: 50%;\">";
+				        echo "</div>";
+				    }
+				    echo "<center>";
+				    foreach($moment["tag"] as $tag)
+				    {
+				    	echo "<a class=\"btn icon-btn btn-danger speciala\" href=\"\">";
+				    	echo $tag;
+				    	echo "</a>";
+				    }
+					echo"</center></div>";
+				}
+			?>
 		</div>
 
 		<div class="footer" style="text-align:center">
@@ -74,58 +121,76 @@
 						<h4 class="modal-title">Add Moment</h4>
 					</div>
 					<div class="modal-body">
-						<ul class="nav nav-tabs">
-							<li class="active"><a  href="#1" data-toggle="tab">From Computer</a></li>
-							<li><a href="#2" data-toggle="tab">From Instagram</a></li>
-						</ul>
-							<div class="tab-content ">
-								<div class="tab-pane active" id="1">
-									<center class="continut">
-										<form class="form-horizontal" action=<?php global $root; echo "\"" . $root . "/services/newMoment\"";?> method="POST" enctype="multipart/form-data">
-											<div class="form-group">
-												<label class="control-label col-sm-2">Title:</label>
-												<div class="col-sm-10">
-													<input type="text" class="form-control" id="title" required="required" name="title">
-												</div>
-											</div>
 
-											<div class="form-group">
-												<label class="control-label col-sm-2">Date:</label>
-												<div class="col-sm-10">
-													<input type="date"  class="form-control" id="date" placeholder="Enter date" name="date">
-												</div>
-											</div>
+						<div class="tab-pane active" id="1">
+							<center class="continut">
+								<form class="form-horizontal" action=<?php global $root; echo "\"" . $root . "services/newMoment\"";?> method="POST" enctype="multipart/form-data">
+									<input type="hidden" name="tipImagine" value="0" id="tipImagine">
+									<input type="hidden" name="urlOfImageFromInstagram" value="" id="urlOfImageFromInstagram">
+									<div class="form-group">
+										<label class="control-label col-sm-2">Title:</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="title" required="required" name="title">
+										</div>
+									</div>
 
-											<div class="form-group">
-												<label class="control-label col-sm-2">Tags:</label>
-												<div class="col-sm-10">
-													<input type="text" class="form-control" id="tags" data-role="tagsinput" name="tags">
-												</div>
-											</div>
+									<div class="form-group">
+										<label class="control-label col-sm-2">Date:</label>
+										<div class="col-sm-10">
+											<input type="date"  class="form-control" id="date" placeholder="Enter date" name="date">
+										</div>
+									</div>
 
-											<div class="form-group">
-												<label class="control-label col-sm-2" for="email">Image:</label>
-												<div class="col-sm-10">
-													<input type="file" name="image" id="image">
-												</div>
-											</div>
+									<div class="form-group">
+										<label class="control-label col-sm-2">Tags:</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="tags" data-role="tagsinput" name="tags">
+										</div>
+									</div>
 
-											<div class="form-group">
-												<label class="control-label col-sm-2"></label>
-												<div class="col-sm-10">
-													<button type="submit" class="btn btn-default form-control buton_submit">Submit</button>
-												</div>
+									<div class="form-group">
+										<label class="control-label col-sm-2" for="email">Image:</label>
+										<div class="col-sm-10">
+											<div id="browser">
+												<input type="file" name="image" id="image" class="filestyle" data-input="false">
 											</div>
-										</form>
-									</center>
-								</div>
-								<div class="tab-pane" id="2">
-									<h3>Notice the gap between the content and tab after applying a background color</h3>
-								</div>
-							</div>
+											<div id="browser">
+												<a data-toggle="modal" class="btn btn-social btn-instagram" id="buton_instagram">
+													<span class="fa fa-instagram"></span> Browse Instagram
+												</a>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-sm-2"></label>
+										<div class="col-sm-10">
+											<button type="submit" class="btn btn-default form-control buton_submit">Submit</button>
+										</div>
+									</div>
+								</form>
+							</center>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</body>
+
+		<!--Instagram Modal Pictures-->
+  		<div id="getInstagram" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Instagram</h4>
+					</div>
+					<div class="modal-body" id="instagram_posts_container">
+						<div class="clearfix"></div>
+					</div>
+					<div class="modal-footer">
+			        	<button type="button" id = "buton_confirm" class=" btn btn-success" disabled="disabled" onclick="imageFromInstagram();">Choose Picture</button>
+			      </div>
+				</div>
+			</div>
+		</div>
 </html>

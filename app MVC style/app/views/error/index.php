@@ -2,9 +2,9 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Test</title>
+		<title>Error</title>
 	</head>
 	<body>
-		<h3><?php echo $data[0] ?></h3>
+		<h3><?php echo $data["message"] ?></h3>
 	</body>
 </html>

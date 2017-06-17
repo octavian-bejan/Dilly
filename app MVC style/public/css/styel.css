@@ -66,3 +66,93 @@ footer.copyright{
 .buton_submit{
   width: auto;
 }
+div.gallery {
+    border: 1px solid #ccc;
+}
+
+div.gallery:hover {
+    border: 1px solid #777;
+}
+
+div.gallery img {
+    width: 100%;
+    height: auto;
+}
+
+div.desc {
+    padding: 15px;
+    text-align: center;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.responsive {
+    padding: 0 6px;
+    float: left;
+    width: 24.99999%;
+}
+
+@media only screen and (max-width: 700px){
+    .responsive {
+        width: 49.99999%;
+        margin: 6px 0;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    .responsive {
+        width: 100%;
+    }
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+#instagram_posts_container{
+  height: 400px;
+  overflow-y: scroll;
+}
+@media only screen and (max-height: 700px){
+  #instagram_posts_container{
+    height: 300px;
+    overflow-y: scroll;
+  }
+}
+@media only screen and (max-height: 500px){
+  #instagram_posts_container{
+    height: 200px;
+    overflow-y: scroll;
+  }
+}
+#buton_instagram{
+  display: inline-block;
+}
+#browser{
+  display: inline-block;
+  vertical-align: middle;
+}
+.speciala{
+  margin-right: 5px;
+  margin-top: 5px;
+}
+.speciala2{
+  margin-top: 8px;
+}
+.stylish-input-group .input-group-addon{
+    background: white !important; 
+    width: 25%;
+    margin: 5px;
+}
+.stylish-input-group .form-control{
+  border-right:0; 
+  box-shadow:0 0 0; 
+  border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}

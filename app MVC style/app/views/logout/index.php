@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<script src="https://apis.google.com/js/platform.js" async defer></script>
-		<meta name="google-signin-client_id" content="977594582694-7qal4i1tqsk6jvcm25qvvj2e1q29dn1p.apps.googleusercontent.com">
+		<meta name="NAME" content="ID">
 		<link rel="stylesheet" type="text/css" href="<?php global $root; echo $root."css/home-index.css"; ?>">
 		<meta charset="UTF-8">
 		<title>Deconectare</title>
@@ -30,7 +30,7 @@
 				gapi.load('auth2', 
 					function()
 					{
-        				auth2 = gapi.auth2.init({ client_id: '977594582694-7qal4i1tqsk6jvcm25qvvj2e1q29dn1p.apps.googleusercontent.com', cookiepolicy: 'single_host_origin'});
+        				auth2 = gapi.auth2.init({ client_id: 'ID', cookiepolicy: 'host'});
         				auth2.isSignedIn.listen(signOut);
       				}
       			);

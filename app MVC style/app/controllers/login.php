@@ -177,7 +177,7 @@
 				$nr_rows = oci_fetch_all($stid, $result, null, null, OCI_FETCHSTATEMENT_BY_ROW);
 				oci_free_statement($stid);
 
-				if($nr_rows == 1)
+				if($nr_rows > 0)
 				{
 					//exista deja username
 					global $homeUrl;
